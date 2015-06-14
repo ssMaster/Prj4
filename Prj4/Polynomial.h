@@ -1,3 +1,9 @@
+/*
+Simon Sharudin
+CS331 - Project4
+Due: June 16, 2015
+*/
+
 #ifndef POLYNOMIAL_H
 #define POLYNOMIAL_H
 

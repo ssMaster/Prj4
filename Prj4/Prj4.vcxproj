@@ -76,6 +76,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Polynomial.cpp" />
     <ClCompile Include="Prj4Test.cpp" />
   </ItemGroup>
   <ItemGroup>
