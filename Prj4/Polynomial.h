@@ -17,7 +17,7 @@ using namespace std;
 class Polynomial {
 
 	friend istream& operator>>(istream& in, Polynomial& v);
-	//friend ostream& operator<<(ostream& out, const Polynomial& v);
+	friend ostream& operator<<(ostream& out, const Polynomial& v);
 	friend void show(Polynomial* p);
 
 public:

@@ -31,8 +31,6 @@ Polynomial::Polynomial(const char* ps){
 	vector<string> coeff;
 	vector<string> sub;
 
-	cout << endl << "Polynomial: " << ps << endl;
-
 	// Initialize array to zero
 	for (int i = 0; i < 10; i++){
 		coefficients_[i] = 0;
@@ -97,10 +95,10 @@ Polynomial::Polynomial(const char* ps){
 	}
 
 	// =========
-	cout << endl;
+	/*cout << endl;
 	for (int i = 0; i < 10; i++){
 		cout << coefficients_[i] << " x " << i << endl;
-	}
+	}*/
 }
 
 istream& operator>>(istream& in, Polynomial& v){
@@ -110,10 +108,23 @@ istream& operator>>(istream& in, Polynomial& v){
 
 	return in;
 }
-/*
-ostream& operator<<(ostream& out, const Polynomial& v){
 
-}*/
+ostream& operator<<(ostream& out, const Polynomial& v){
+	int size = 10;
+
+	for (int i = size - 1; i >= 0; i--){
+		if (v.coefficients_[i] != 0){
+			if (i == 0){	
+				out << "Term is: " << v.coefficients_[i] << endl;
+			}
+			else{
+				out << "Term is: " << v.coefficients_[i] << "x" << i << endl;
+			}
+		}
+	}
+
+	return out;
+}
 
 void show(Polynomial* p) {
 	cout << "Coefficients are: " << p->coefficients_[0];

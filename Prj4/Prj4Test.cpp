@@ -34,8 +34,8 @@ int main()
 	cout << "Start of >> and << tests..." << endl;
 	cout << "Please enter: 3x9 - 6x7 - 18x3 + 6x1 + 14" << endl;
 	cin >> b;
-	/*cout << b << endl;
-	cout << "Please enter: -4x7 + 12x4 + 9x1 - 9" << endl;
+	cout << b << endl;
+	/*cout << "Please enter: -4x7 + 12x4 + 9x1 - 9" << endl;
 	cin >> c;
 	cout << c << endl;
 	cout << "End of >> and << tests." << endl << endl;
