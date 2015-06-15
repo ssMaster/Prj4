@@ -14,9 +14,7 @@ Polynomial::Polynomial(){
 	for (int i = 0; i < 10; i++){
 		coefficients_[i] = 0;
 	}
-	
 }
-
 
 // Copy Constructor
 Polynomial::Polynomial(const Polynomial& p){
@@ -49,12 +47,12 @@ Polynomial::Polynomial(const char* ps){
 			terms.push_back(term);
 			term = "";
 		}
-		
+
 	}
 	terms.push_back(term);	// add the final term to the vector
-	
+
 	// ========================================================
-	
+
 	int index;
 	for (vector<string>::iterator it = terms.begin(); it != terms.end(); it++){
 		if ((*it).compare("+") == 0 || (*it).compare("-") == 0 || (*it).compare("*") == 0 || (*it).compare("+=") == 0 || (*it).compare("-=") == 0 || (*it).compare("*=") == 0){
@@ -137,14 +135,21 @@ void show(Polynomial* p) {
 	cout << endl;
 }
 
-/*
+
 // ===================================
 
 // Overloaded + operator
-Polynomial Polynomial::operator+(const Polynomial&) const{
+Polynomial Polynomial::operator+(const Polynomial& poly) const{
+	Polynomial ans;
 
+	for (int i = 0; i < 10; i++){
+		ans.coefficients_[i] = coefficients_[i] + poly.coefficients_[i];
+		cout << coefficients_[i] << " + " << poly.coefficients_[i] << " = " << ans.coefficients_[i] << "\tPower: " << i << endl;
+	}
+
+	return ans;
 }
-
+/*
 Polynomial Polynomial::operator-(const Polynomial&) const{
 
 }

@@ -23,9 +23,9 @@ class Polynomial {
 public:
 	Polynomial();
 	Polynomial(const Polynomial&);
-	Polynomial(const char *);/*
+	Polynomial(const char *);
 	Polynomial operator+(const Polynomial&) const;
-	Polynomial operator-(const Polynomial&) const;
+	/*Polynomial operator-(const Polynomial&) const;
 	Polynomial operator*(const Polynomial&);
 	Polynomial& operator+=(const Polynomial&);
 	Polynomial& operator-=(const Polynomial&);

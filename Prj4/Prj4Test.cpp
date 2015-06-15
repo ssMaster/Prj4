@@ -31,7 +31,7 @@ int main()
 	delete a;
 	cout << "End of Polynomial(const char*) tests." << endl << endl;
 
-	cout << "Start of >> and << tests..." << endl;
+	/*cout << "Start of >> and << tests..." << endl;
 	cout << "Please enter: 3x9 - 6x7 - 18x3 + 6x1 + 14" << endl;
 	cin >> b;
 	cout << b << endl;
@@ -46,8 +46,13 @@ int main()
 	Polynomial e(c);
 	cout << e << endl;
 	cout << "End of copy tests...." << endl << endl;
-	
-	/*
+	*/
+	// =============
+
+	Polynomial e("3x2");
+
+	// =============
+
 	Polynomial f("3x9 - 6x7 - 18x3 + 6x1 + 14");
 	Polynomial g("-2x9 + 7x7 - 18x3 + 6x2 - 11");
 	Polynomial h("-4x7 + 12x4 + 9x1 - 9");
@@ -59,6 +64,19 @@ int main()
 	cout << e << endl;
 	cout << "End of + tests...." << endl << endl;
 
+	// =======
+
+	/*Polynomial d("3x9 + 4x2 + 5");
+	Polynomial e("3x2 + 3");
+
+	Polynomial f;
+
+	f = d + e;*/
+
+	// =======
+
+
+	/*
 	cout << "Start of - tests..." << endl;
 	e = f - g;
 	cout << e << endl;
