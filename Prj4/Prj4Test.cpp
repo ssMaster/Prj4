@@ -15,16 +15,7 @@ using namespace std;
 
 int main()
 {
-	int i, j;
-	for (i = 0, j = 0; i < 10; i++, ++j){
-		cout << "i is:\t" << i << " and j is: " << j << endl;
-	}
-	cout << "i is:\t" << i << " and j is: " << j << endl << endl;
 
-	i = j = 0;
-	cout << "i = " << i << endl;
-	cout << " and now i++ = " << i++ << endl;
-	cout << "j = " << j << " now ++j = " << ++j << endl;
 
 	// ============================================================================================
 
