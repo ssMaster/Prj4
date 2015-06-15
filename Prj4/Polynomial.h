@@ -1,9 +1,16 @@
+/*
+Simon Sharudin
+CS331 - Project4
+Due: June 16, 2015
+*/
+
 #ifndef POLYNOMIAL_H
 #define POLYNOMIAL_H
 
 #include <iostream>
 #include <iomanip>
 #include <cmath> 
+#include <string>
 #include <cstring>
 using namespace std;
 
@@ -18,7 +25,7 @@ public:
 	Polynomial(const Polynomial&);
 	Polynomial(const char *);
 	Polynomial operator+(const Polynomial&) const;
-	Polynomial operator-(const Polynomial&) const;
+	/*Polynomial operator-(const Polynomial&) const;
 	Polynomial operator*(const Polynomial&);
 	Polynomial& operator+=(const Polynomial&);
 	Polynomial& operator-=(const Polynomial&);
@@ -26,7 +33,7 @@ public:
 	int operator[](int) const;
 	int& operator[](int);
 	int operator()(int);
-
+	*/
 private:
 	int coefficients_[10];
 };

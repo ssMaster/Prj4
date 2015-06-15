@@ -1,33 +1,26 @@
-
 /*
+Simon Sharudin
+CS331 - Project4
+Due: June 16, 2015
+*/
+
+
+
 #include "polynomial.h"
-
-void show(Polynomial* p) {
-	cout << "Coefficients are: " << p->coefficients_[0];
-	for (int i = 1; i<10; i++) {
-		cout << "," << p->coefficients_[i];
-	}
-	cout << endl;
-}*/
-
 #include <iostream>
 using namespace std;
 
 int main()
 {
-
-
-	// ============================================================================================
-
-	/*int i;
-
+	int i;
+	
 	cout << "Start of default constructor, Polynomial(), tests..." << endl;
 	Polynomial *a;
 	Polynomial b, c;
 	a = new Polynomial();
 	show(a);
 	cout << "End of Polynomial() tests." << endl << endl;
-
+	
 	cout << "Start of user-defined constructor, Polynomial(const char*), tests..." << endl;
 	a = new Polynomial("-12 + 7x2 + 7x9 - 21x5 - 11x7");
 	show(a);
@@ -38,7 +31,7 @@ int main()
 	delete a;
 	cout << "End of Polynomial(const char*) tests." << endl << endl;
 
-	cout << "Start of >> and << tests..." << endl;
+	/*cout << "Start of >> and << tests..." << endl;
 	cout << "Please enter: 3x9 - 6x7 - 18x3 + 6x1 + 14" << endl;
 	cin >> b;
 	cout << b << endl;
@@ -46,13 +39,19 @@ int main()
 	cin >> c;
 	cout << c << endl;
 	cout << "End of >> and << tests." << endl << endl;
-
+	
 	cout << "Start of copy constructor tests..." << endl;
 	Polynomial d(b);
 	cout << d << endl;
 	Polynomial e(c);
 	cout << e << endl;
 	cout << "End of copy tests...." << endl << endl;
+	*/
+	// =============
+
+	Polynomial e("3x2");
+
+	// =============
 
 	Polynomial f("3x9 - 6x7 - 18x3 + 6x1 + 14");
 	Polynomial g("-2x9 + 7x7 - 18x3 + 6x2 - 11");
@@ -65,6 +64,19 @@ int main()
 	cout << e << endl;
 	cout << "End of + tests...." << endl << endl;
 
+	// =======
+
+	/*Polynomial d("3x9 + 4x2 + 5");
+	Polynomial e("3x2 + 3");
+
+	Polynomial f;
+
+	f = d + e;*/
+
+	// =======
+
+
+	/*
 	cout << "Start of - tests..." << endl;
 	e = f - g;
 	cout << e << endl;
