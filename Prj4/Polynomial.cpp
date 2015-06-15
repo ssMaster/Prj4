@@ -17,11 +17,14 @@ Polynomial::Polynomial(){
 	
 }
 
-/*
-// Copy Constructor
-Polynomial::Polynomial(const Polynomial&){
 
-}*/
+// Copy Constructor
+Polynomial::Polynomial(const Polynomial& p){
+	coefficients_[10];
+	for (int i = 0; i < 10; i++){
+		coefficients_[i] = p.coefficients_[i];
+	}
+}
 
 // User-defined Constructor - Creates an object with the given string polynomial
 Polynomial::Polynomial(const char* ps){

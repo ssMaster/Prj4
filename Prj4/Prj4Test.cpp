@@ -35,18 +35,19 @@ int main()
 	cout << "Please enter: 3x9 - 6x7 - 18x3 + 6x1 + 14" << endl;
 	cin >> b;
 	cout << b << endl;
-	/*cout << "Please enter: -4x7 + 12x4 + 9x1 - 9" << endl;
+	cout << "Please enter: -4x7 + 12x4 + 9x1 - 9" << endl;
 	cin >> c;
 	cout << c << endl;
 	cout << "End of >> and << tests." << endl << endl;
-	/*
+	
 	cout << "Start of copy constructor tests..." << endl;
 	Polynomial d(b);
 	cout << d << endl;
 	Polynomial e(c);
 	cout << e << endl;
 	cout << "End of copy tests...." << endl << endl;
-
+	
+	/*
 	Polynomial f("3x9 - 6x7 - 18x3 + 6x1 + 14");
 	Polynomial g("-2x9 + 7x7 - 18x3 + 6x2 - 11");
 	Polynomial h("-4x7 + 12x4 + 9x1 - 9");
