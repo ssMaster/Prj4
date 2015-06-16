@@ -25,7 +25,7 @@ public:
 	Polynomial(const Polynomial&);
 	Polynomial(const char *);
 	Polynomial operator+(const Polynomial&) const;
-	/*Polynomial operator-(const Polynomial&) const;
+	Polynomial operator-(const Polynomial&) const;
 	Polynomial operator*(const Polynomial&);
 	Polynomial& operator+=(const Polynomial&);
 	Polynomial& operator-=(const Polynomial&);
@@ -33,7 +33,7 @@ public:
 	int operator[](int) const;
 	int& operator[](int);
 	int operator()(int);
-	*/
+	
 private:
 	int coefficients_[10];
 };

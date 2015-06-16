@@ -76,7 +76,7 @@ int main()
 	// =======
 
 
-	/*
+	
 	cout << "Start of - tests..." << endl;
 	e = f - g;
 	cout << e << endl;
@@ -132,7 +132,7 @@ int main()
 	cout << "Start of () tests..." << endl;
 	cout << "Evaluation = " << e(1) << endl;
 	cout << "Evaluation = " << e(4) << endl;
-	cout << "End of () tests...." << endl;*/
+	cout << "End of () tests...." << endl;
 
 	return 0;
 }

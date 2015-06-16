@@ -149,38 +149,91 @@ Polynomial Polynomial::operator+(const Polynomial& poly) const{
 
 	return ans;
 }
-/*
-Polynomial Polynomial::operator-(const Polynomial&) const{
 
+Polynomial Polynomial::operator-(const Polynomial& poly) const{
+	Polynomial ans;
+
+	for (int i = 0; i < 10; i++){
+		ans.coefficients_[i] = abs(coefficients_[i] - poly.coefficients_[i]);
+		cout << coefficients_[i] << " - " << poly.coefficients_[i] << " = " << ans.coefficients_[i] << "\tPower: " << i << endl;
+	}
+
+	return ans;
 }
 
-Polynomial Polynomial::operator*(const Polynomial&){
+Polynomial Polynomial::operator*(const Polynomial& poly){
+	Polynomial ans;
 
+	for (int i = 0; i < 10; i++){
+		ans.coefficients_[i] = abs(coefficients_[i] * poly.coefficients_[i]);
+		cout << coefficients_[i] << " * " << poly.coefficients_[i] << " = " << ans.coefficients_[i] << "\tPower: " << i << endl;
+	}
+
+	return ans;
 }
 
-Polynomial& Polynomial::operator+=(const Polynomial&){
+Polynomial& Polynomial::operator+=(const Polynomial& poly){
+	
+	for (int i = 0; i < 10; i++){
+		(*this).coefficients_[i] = (*this).coefficients_[i] + poly.coefficients_[i];
+		cout << coefficients_[i] << " + " << poly.coefficients_[i] << " = " << coefficients_[i] << "\tPower: " << i << endl;
+	}
 
+	return *this;
 }
 
-Polynomial& Polynomial::operator-=(const Polynomial&){
 
+Polynomial& Polynomial::operator-=(const Polynomial& poly){
+	for (int i = 0; i < 10; i++){
+		(*this).coefficients_[i] = abs((*this).coefficients_[i] - poly.coefficients_[i]);
+		cout << coefficients_[i] << " - " << poly.coefficients_[i] << " = " << coefficients_[i] << "\tPower: " << i << endl;
+	}
+
+	return *this;
 }
 
-Polynomial& Polynomial::operator*=(const Polynomial&){
+Polynomial& Polynomial::operator*=(const Polynomial& poly){
+	for (int i = 0; i < 10; i++){
+		(*this).coefficients_[i] = (*this).coefficients_[i] * poly.coefficients_[i];
+		cout << coefficients_[i] << " * " << poly.coefficients_[i] << " = " << coefficients_[i] << "\tPower: " << i << endl;
+	}
 
+	return *this;
 }
 
 // ===================================
 
-int Polynomial::operator[](int) const{
-
-}
-
-int& Polynomial::operator[](int){
-
-}
-
-int Polynomial::operator()(int){
-
-}
+/*
+Get the coefficient for a particular power of the polynomial as const
 */
+int Polynomial::operator[](int index) const{
+	return coefficients_[index];
+}
+
+/*
+Set the coefficient for a particular power of the polynomial
+*/
+int& Polynomial::operator[](int index){
+	return coefficients_[index];
+}
+
+/*
+Evaluation of a polynomial
+*/
+int Polynomial::operator()(int x){
+	int ans = 0;
+
+	for (int i = 0; i < 10; i++){
+		if (i == 0){
+			ans += coefficients_[i];
+		}
+		else if (i == 1){
+			ans += coefficients_[i] * x;
+		}
+		else{
+			ans += coefficients_[i] * pow(x, i);
+		}
+	}
+
+	return ans;
+}
