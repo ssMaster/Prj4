@@ -56,11 +56,10 @@ Polynomial::Polynomial(const char* ps){
 	int index;
 	for (vector<string>::iterator it = terms.begin(); it != terms.end(); it++){
 		if ((*it).compare("+") == 0 || (*it).compare("-") == 0 || (*it).compare("*") == 0 || (*it).compare("+=") == 0 || (*it).compare("-=") == 0 || (*it).compare("*=") == 0){
-			//cout << "Operator found!" << endl;
 			ops.push_back(*it);
 		}
 		else{
-			//cout << "The term is:\t" << *it << endl;
+			cout << "The term is:\t" << *it << endl;
 
 			index = (*it).find('x');
 
@@ -88,16 +87,6 @@ Polynomial::Polynomial(const char* ps){
 		op_it++;
 	}
 
-	/*cout << endl;
-	for (vector<string>::iterator it = coeff.begin(); it != coeff.end(); it++){
-		cout << "The coeff is:\t\t" << *it << endl;
-	}
-
-	cout << endl;
-	for (vector<string>::iterator it = sub.begin(); it != sub.end(); it++){
-		cout << "The subscript is:\t\t\t" << *it << endl;
-	}*/
-
 	cout << endl;
 	for (vector<string>::iterator it = ops.begin(); it != ops.end(); it++){
 		cout << "The operator is: " << *it << endl;
@@ -116,6 +105,7 @@ Polynomial::Polynomial(const char* ps){
 
 }
 
+// Overloaded >> operator for polynomials
 istream& operator>>(istream& in, Polynomial& v){
 	char c[100];
 	in.getline(c, 100);
@@ -124,24 +114,24 @@ istream& operator>>(istream& in, Polynomial& v){
 	return in;
 }
 
+// Overloaded << operator for polynomials
 ostream& operator<<(ostream& out, const Polynomial& v){
 	int size = 10;
 
-	//out << "Displaying: " << endl;
 	for (int i = size - 1; i >= 0; i--){
 		if (v.coefficients_[i] != 0){
 			if (i == 0){	
-				//out << "Term is: " << v.coefficients_[i] << endl;
 				out << v.coefficients_[i];
 			}
 			else{
-				//out << "Term is: " << v.coefficients_[i] << "x" << i << endl;
 				if (v.coefficients_[i] >= 0){
-					out << v.coefficients_[i] << "x" << i << " + ";
+					//out << v.coefficients_[i] << "x" << i << " + ";
 				}
 				else{
-					out << v.coefficients_[i] << "x" << i << " - ";
+					//out << v.coefficients_[i] << "x" << i << " - ";
 				}
+				out << v.coefficients_[i] << "x" << i << " + ";
+
 			}
 		}
 	}
@@ -149,6 +139,7 @@ ostream& operator<<(ostream& out, const Polynomial& v){
 	return out;
 }
 
+// Display the coefficients of the polynomial
 void show(Polynomial* p) {
 	cout << "Coefficients are: " << p->coefficients_[0];
 	for (int i = 1; i<10; i++) {
@@ -157,73 +148,75 @@ void show(Polynomial* p) {
 	cout << endl;
 }
 
-
-// ===================================
-
-// Overloaded + operator
+// Overloaded + operator for adding polynomials
 Polynomial Polynomial::operator+(const Polynomial& poly) const{
 	Polynomial ans;
 
 	for (int i = 0; i < 10; i++){
 		ans.coefficients_[i] = coefficients_[i] + poly.coefficients_[i];
-		//cout << coefficients_[i] << " + " << poly.coefficients_[i] << " = " << ans.coefficients_[i] << "\tPower: " << i << endl;
 	}
 
 	return ans;
 }
 
+// Overloaded - operator for subtracting polynomials
 Polynomial Polynomial::operator-(const Polynomial& poly) const{
 	Polynomial ans;
 
 	for (int i = 0; i < 10; i++){
 		ans.coefficients_[i] = coefficients_[i] - poly.coefficients_[i];
-		//cout << coefficients_[i] << " - " << poly.coefficients_[i] << " = " << ans.coefficients_[i] << "\tPower: " << i << endl;
 	}
 
 	return ans;
 }
 
+// Overloaded * operator for multiplying polynomials
 Polynomial Polynomial::operator*(const Polynomial& poly){
 	Polynomial ans;
 
 	for (int i = 0; i < 10; i++){
-		ans.coefficients_[i] = coefficients_[i] * poly.coefficients_[i];
-		//cout << coefficients_[i] << " * " << poly.coefficients_[i] << " = " << ans.coefficients_[i] << "\tPower: " << i << endl;
+		for (int j = 0; j < 10; j++){
+			if ((i + j) <= 9){
+				ans.coefficients_[i + j] += coefficients_[i] * poly.coefficients_[j];
+			}
+		}
 	}
 
 	return ans;
 }
 
+// Overloaded += operator for polynomials
 Polynomial& Polynomial::operator+=(const Polynomial& poly){
-	
 	for (int i = 0; i < 10; i++){
 		(*this).coefficients_[i] = (*this).coefficients_[i] + poly.coefficients_[i];
-		//cout << coefficients_[i] << " + " << poly.coefficients_[i] << " = " << coefficients_[i] << "\tPower: " << i << endl;
 	}
 
 	return *this;
 }
 
-
+// Overloaded -= operator for polynomials
 Polynomial& Polynomial::operator-=(const Polynomial& poly){
 	for (int i = 0; i < 10; i++){
 		(*this).coefficients_[i] = (*this).coefficients_[i] - poly.coefficients_[i];
-		//cout << coefficients_[i] << " - " << poly.coefficients_[i] << " = " << coefficients_[i] << "\tPower: " << i << endl;
 	}
 
 	return *this;
 }
 
+// Overloaded *= operator for polynomials
 Polynomial& Polynomial::operator*=(const Polynomial& poly){
+	Polynomial ans;
+
 	for (int i = 0; i < 10; i++){
-		(*this).coefficients_[i] = (*this).coefficients_[i] * poly.coefficients_[i];
-		//cout << coefficients_[i] << " * " << poly.coefficients_[i] << " = " << coefficients_[i] << "\tPower: " << i << endl;
+		for (int j = 0; j < 10; j++){
+			if ((i + j) <= 9){
+				ans.coefficients_[i + j] += coefficients_[i] * poly.coefficients_[j];
+			}
+		}
 	}
 
-	return *this;
+	return ans;
 }
-
-// ===================================
 
 /*
 Get the coefficient for a particular power of the polynomial as const
