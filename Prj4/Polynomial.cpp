@@ -246,7 +246,7 @@ int Polynomial::operator()(int x){
 			ans += coefficients_[i] * x;
 		}
 		else{
-			ans += coefficients_[i] * pow(x, i);
+			ans += coefficients_[i] * (int) pow(x, i);
 		}
 	}
 
