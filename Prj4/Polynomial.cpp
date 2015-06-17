@@ -31,6 +31,7 @@ Polynomial::Polynomial(const char* ps){
 	vector<string> terms;
 	vector<string> coeff;
 	vector<string> sub;
+	vector<string> ops;
 
 	// Initialize array to zero
 	for (int i = 0; i < 10; i++){
@@ -52,11 +53,11 @@ Polynomial::Polynomial(const char* ps){
 	terms.push_back(term);	// add the final term to the vector
 
 	// ========================================================
-
 	int index;
 	for (vector<string>::iterator it = terms.begin(); it != terms.end(); it++){
 		if ((*it).compare("+") == 0 || (*it).compare("-") == 0 || (*it).compare("*") == 0 || (*it).compare("+=") == 0 || (*it).compare("-=") == 0 || (*it).compare("*=") == 0){
 			//cout << "Operator found!" << endl;
+			ops.push_back(*it);
 		}
 		else{
 			//cout << "The term is:\t" << *it << endl;
@@ -73,6 +74,20 @@ Polynomial::Polynomial(const char* ps){
 		}
 	}
 
+	// ================================================ Convert subtraction of a term to a negative coefficient
+
+	vector<string>::iterator op_it = ops.begin();
+	vector<string>::iterator coeff_it = coeff.begin();
+	
+	coeff_it++;
+	while (coeff_it != coeff.end()){
+		if ((*op_it).compare("-") == 0){
+			*coeff_it = "-" + *coeff_it;
+		}
+		coeff_it++;
+		op_it++;
+	}
+
 	/*cout << endl;
 	for (vector<string>::iterator it = coeff.begin(); it != coeff.end(); it++){
 		cout << "The coeff is:\t\t" << *it << endl;
@@ -83,10 +98,14 @@ Polynomial::Polynomial(const char* ps){
 		cout << "The subscript is:\t\t\t" << *it << endl;
 	}*/
 
+	cout << endl;
+	for (vector<string>::iterator it = ops.begin(); it != ops.end(); it++){
+		cout << "The operator is: " << *it << endl;
+	}
+
 	// ======================================================
 
 	// Assign each coefficient in the array to its power subscript
-	
 	vector<string>::iterator sub_it = sub.begin();
 	for (vector<string>::iterator coeff_it = coeff.begin(); coeff_it != coeff.end(); coeff_it++, sub_it++){
 		int c, s;
@@ -95,11 +114,6 @@ Polynomial::Polynomial(const char* ps){
 		coefficients_[s] = c;
 	}
 
-	// =========
-	/*cout << endl;
-	for (int i = 0; i < 10; i++){
-		cout << coefficients_[i] << " x " << i << endl;
-	}*/
 }
 
 istream& operator>>(istream& in, Polynomial& v){
@@ -113,13 +127,21 @@ istream& operator>>(istream& in, Polynomial& v){
 ostream& operator<<(ostream& out, const Polynomial& v){
 	int size = 10;
 
+	//out << "Displaying: " << endl;
 	for (int i = size - 1; i >= 0; i--){
 		if (v.coefficients_[i] != 0){
 			if (i == 0){	
-				out << "Term is: " << v.coefficients_[i] << endl;
+				//out << "Term is: " << v.coefficients_[i] << endl;
+				out << v.coefficients_[i];
 			}
 			else{
-				out << "Term is: " << v.coefficients_[i] << "x" << i << endl;
+				//out << "Term is: " << v.coefficients_[i] << "x" << i << endl;
+				if (v.coefficients_[i] >= 0){
+					out << v.coefficients_[i] << "x" << i << " + ";
+				}
+				else{
+					out << v.coefficients_[i] << "x" << i << " - ";
+				}
 			}
 		}
 	}
@@ -144,7 +166,7 @@ Polynomial Polynomial::operator+(const Polynomial& poly) const{
 
 	for (int i = 0; i < 10; i++){
 		ans.coefficients_[i] = coefficients_[i] + poly.coefficients_[i];
-		cout << coefficients_[i] << " + " << poly.coefficients_[i] << " = " << ans.coefficients_[i] << "\tPower: " << i << endl;
+		//cout << coefficients_[i] << " + " << poly.coefficients_[i] << " = " << ans.coefficients_[i] << "\tPower: " << i << endl;
 	}
 
 	return ans;
@@ -154,8 +176,8 @@ Polynomial Polynomial::operator-(const Polynomial& poly) const{
 	Polynomial ans;
 
 	for (int i = 0; i < 10; i++){
-		ans.coefficients_[i] = abs(coefficients_[i] - poly.coefficients_[i]);
-		cout << coefficients_[i] << " - " << poly.coefficients_[i] << " = " << ans.coefficients_[i] << "\tPower: " << i << endl;
+		ans.coefficients_[i] = coefficients_[i] - poly.coefficients_[i];
+		//cout << coefficients_[i] << " - " << poly.coefficients_[i] << " = " << ans.coefficients_[i] << "\tPower: " << i << endl;
 	}
 
 	return ans;
@@ -165,8 +187,8 @@ Polynomial Polynomial::operator*(const Polynomial& poly){
 	Polynomial ans;
 
 	for (int i = 0; i < 10; i++){
-		ans.coefficients_[i] = abs(coefficients_[i] * poly.coefficients_[i]);
-		cout << coefficients_[i] << " * " << poly.coefficients_[i] << " = " << ans.coefficients_[i] << "\tPower: " << i << endl;
+		ans.coefficients_[i] = coefficients_[i] * poly.coefficients_[i];
+		//cout << coefficients_[i] << " * " << poly.coefficients_[i] << " = " << ans.coefficients_[i] << "\tPower: " << i << endl;
 	}
 
 	return ans;
@@ -176,7 +198,7 @@ Polynomial& Polynomial::operator+=(const Polynomial& poly){
 	
 	for (int i = 0; i < 10; i++){
 		(*this).coefficients_[i] = (*this).coefficients_[i] + poly.coefficients_[i];
-		cout << coefficients_[i] << " + " << poly.coefficients_[i] << " = " << coefficients_[i] << "\tPower: " << i << endl;
+		//cout << coefficients_[i] << " + " << poly.coefficients_[i] << " = " << coefficients_[i] << "\tPower: " << i << endl;
 	}
 
 	return *this;
@@ -185,8 +207,8 @@ Polynomial& Polynomial::operator+=(const Polynomial& poly){
 
 Polynomial& Polynomial::operator-=(const Polynomial& poly){
 	for (int i = 0; i < 10; i++){
-		(*this).coefficients_[i] = abs((*this).coefficients_[i] - poly.coefficients_[i]);
-		cout << coefficients_[i] << " - " << poly.coefficients_[i] << " = " << coefficients_[i] << "\tPower: " << i << endl;
+		(*this).coefficients_[i] = (*this).coefficients_[i] - poly.coefficients_[i];
+		//cout << coefficients_[i] << " - " << poly.coefficients_[i] << " = " << coefficients_[i] << "\tPower: " << i << endl;
 	}
 
 	return *this;
@@ -195,7 +217,7 @@ Polynomial& Polynomial::operator-=(const Polynomial& poly){
 Polynomial& Polynomial::operator*=(const Polynomial& poly){
 	for (int i = 0; i < 10; i++){
 		(*this).coefficients_[i] = (*this).coefficients_[i] * poly.coefficients_[i];
-		cout << coefficients_[i] << " * " << poly.coefficients_[i] << " = " << coefficients_[i] << "\tPower: " << i << endl;
+		//cout << coefficients_[i] << " * " << poly.coefficients_[i] << " = " << coefficients_[i] << "\tPower: " << i << endl;
 	}
 
 	return *this;
